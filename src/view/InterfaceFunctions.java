@@ -27,18 +27,34 @@ public class InterfaceFunctions {
 	 * to modify the database
 	 */
 	public void menuSelection() {
-		/*
-		 * to implement: separate menus for modifying (add/remove) and viewing
-		 */
-		System.out.println("What do you wish to do?\n 1) Add new personal file\n 2) Report new division\n "
-				+ "3) Add new station/camp record");
-		System.out.println(" 4) View enlisted (Rank, Last name and active division). \n 5) Show active divisions. \n "
-				+ "6) Delete a person from the record.\n 7) Change location of a division posting.\n"
-				+ " 8) Exit program.");
-		userSelection = Integer.parseInt(scan.nextLine());
-
+		do {
+			addMenuSelections();
+			viewMenuSelections();
+			System.out.println("8) Exit program");
+			try {
+				userSelection = Integer.parseInt(scan.nextLine());
+				stringIsEmpty = false;
+			} catch (NumberFormatException e) {
+				System.out.println("Error. Not a number input");
+				stringIsEmpty = true;
+			}
+		} while (stringIsEmpty == true);
 	}
 
+	public void addMenuSelections() {
+		System.out.println("1) Add new personal file. \n2) Report new division\n3) Add new station record");
+	}
+
+	public void viewMenuSelections() {
+		System.out.println("4) View enlisted (Rank, Last name and activ division). \n5) Show active divisions.");
+		System.out.println("6) Delete from the enlisted records.\n7) Change location of a division posting.");
+	}
+	
+
+	/**
+	 * Exception handler in case user inputs an empty string when prompted for
+	 * input.
+	 */
 	public void emptyStringHandler(String str) {
 		if (str.equals("")) {
 			stringIsEmpty = true;
@@ -135,7 +151,7 @@ public class InterfaceFunctions {
 
 	/**
 	 * Deletes a row/enlisted person from the DB
-	 * */
+	 */
 	public void deleteEnlistedPersonMessage() {
 		do {
 			System.out.print("Please enter unique ID of person to be deleted: ");
@@ -146,7 +162,7 @@ public class InterfaceFunctions {
 
 	/**
 	 * Change location of a division posting
-	 * */
+	 */
 	public void changeDivisionStationMessage() {
 		do {
 			System.out.print("Enter ID of the division you wish to alter: ");

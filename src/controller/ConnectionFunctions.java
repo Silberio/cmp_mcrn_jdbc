@@ -34,6 +34,7 @@ public class ConnectionFunctions {
 			// create statement
 
 			ui.menuSelection();
+			
 			switch (ui.getUserSelection()) {
 			case 1:
 				ui.addNewPersonMessage();
@@ -62,6 +63,10 @@ public class ConnectionFunctions {
 				modFunc.changeDivisionStation(connection, ui.getDivision(), ui.getLocation());
 				break;
 			case 8:
+				System.exit(0);
+				break;
+			default:
+				System.out.print("No choice selected. Exiting...");
 				System.exit(0);
 				break;
 			}
